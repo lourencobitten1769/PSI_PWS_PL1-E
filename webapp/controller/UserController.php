@@ -100,12 +100,12 @@ class UserController extends BaseController implements ResourceControllerInterfa
      */
     public function edit($id)
     {
-        $book = Book::find([$id]);
+        $user = User::find([$id]);
 
-        if (is_null($book)) {
+        if (is_null($user)) {
             //TODO redirect to standard error page
         } else {
-            return View::make('book.edit', ['book' => $book]);
+            return View::make('user.edit', ['user' => $user]);
         }
     }
 
@@ -117,15 +117,15 @@ class UserController extends BaseController implements ResourceControllerInterfa
     {
         //find resource (activerecord/model) instance where PK = $id
         //your form name fields must match the ones of the table fields
-        $book = Book::find([$id]);
-        $book->update_attributes(Post::getAll());
+        $user = User::find([$id]);
+        $user->update_attributes(Post::getAll());
 
-        if($book->is_valid()){
-            $book->save();
-            Redirect::toRoute('book/index');
+        if($user->is_valid()){
+            $user->save();
+            Redirect::toRoute('user/edit');
         } else {
             //redirect to form with data and errors
-            Redirect::flashToRoute('book/edit', ['book' => $book]);
+            Redirect::flashToRoute('user/edit', ['user' => $user]);
         }
     }
 
