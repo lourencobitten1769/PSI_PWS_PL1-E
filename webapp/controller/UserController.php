@@ -28,7 +28,6 @@ class UserController extends BaseController implements ResourceControllerInterfa
         return View::make('user.index', ['users' => $users]);
     }
 
-
     /**
      * Returns a view with a form to create a new record
      */
@@ -57,6 +56,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
         }
 
     }
+
 
     public function login()
     {

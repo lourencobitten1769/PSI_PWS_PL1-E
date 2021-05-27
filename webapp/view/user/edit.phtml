@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" action="<?URL::toRoute('user/update')?>">
+    <div class="container">
+        <div class="row">
+            <label for="nome">Nome:</label><br>
+            <input type="text" name="nome" placeholder="Nome">
+
+            <label for="morada">Morada:</label>
+            <input type="text" name="morada" placeholder="Morada">
+
+            <label for="telefone">Telefone:</label>
+            <input type="number" max="9" name="telefone" placeholder="telefone">
+        </div>
+        <div class="row">
+            <h1>Informações Especiais</h1>
+        </div>
+        <div class="row">
+            <label for="nif">NIF:</label><br>
+            <input type="texts" name="nif" placeholder="NIF">
+
+            <label for="password">Password:</label><br>
+            <input type="password" name="password" placeholder="Password">
+
+            <input type="submit" value="Alterar">
+        </div>
+    </div>
+</form>
+</body>
+</html>
