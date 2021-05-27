@@ -32,7 +32,7 @@ use ArmoredCore\WebObjects\URL;
 </head>
 
 <body>
-    <form style="background-color:grey; margin-left: 35%;margin-top: 20%; width: 30%; border: solid 1px" method="post" action="<?=Url::toRoute('user/store')?>">
+    <form style="background-color:grey; margin-left: 35%;margin-top: 20%; width: 30%; border: solid 1px" method="post" action="<?=Url::toRoute('user/processLogin')?>">
         <div class="row">
             <div class="col-md-4">
                 <h3>Dados de Acesso</h3>
@@ -40,16 +40,6 @@ use ArmoredCore\WebObjects\URL;
                  <input type="text" class="form-control" name="password" placeholder="Password">
             </div>
         </div>
-            
-            <div class="row">
-            <div class="col-md-4">
-                <input type="text" class="form-control" name="password" placeholder="Password">
-            </div>
-            </div><br>
-            <div class="row">
-            <div class="col-md-4">
-                <input type="hidden" class="form-control" name="id_perfil" value="1">
-            </div>
             <div class="col-md-4">
                 <input style="margin-left: 50px" type="submit" class="btn btn-success" value="Login">
             </div>

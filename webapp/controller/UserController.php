@@ -6,6 +6,7 @@ use ArmoredCore\WebObjects\Post;
 use ArmoredCore\WebObjects\Redirect;
 use ArmoredCore\WebObjects\View;
 
+
 /**
  * CRUD Resource Controller for ActiveRecord Model Book
  *
@@ -53,6 +54,27 @@ class UserController extends BaseController implements ResourceControllerInterfa
         else {
             //redirect to form with data and errors
             Redirect::flashToRoute('user/create', ['user' => $user]);
+        }
+
+    }
+
+    public function login()
+    {
+        return View::make('user.login');
+    }
+
+    public function processLogin()
+    {
+        $user = new User(Post::getAll());
+
+
+        $userisset= User::find_by_username_and_password($user->username,$user->password);
+
+        if (is_null($userisset)) {
+            //TODO redirect to standard error page
+        } else {
+            $_SESSION['login']=$user->username;
+            return View::make('user.index');
         }
 
     }
