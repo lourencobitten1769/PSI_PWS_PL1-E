@@ -1,0 +1,37 @@
+.navbar.sticky-top.navbar-light.bg-light{
+    background-color:#CDFF63;
+    text-align: right;
+}
+
+.navbar.navbar-expand-lg.navbar-light.bg-light{
+    background-color: #0C70B7;
+}
+
+.titulo{
+margin-left: 18%;
+}
+
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 60%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+}
+
+.container.register-form{
+    margin-left: 25%;
+    margin-top: 5%;
+}
+.col-md-4.left{
+    margin-top: 3%;
+}
+
+.col-md-4.right {
+    margin-top: 3%;
+}
+
+

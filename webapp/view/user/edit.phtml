@@ -2,35 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar Informações</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../public/css/edit.css">
 </head>
 <body>
 
-<form method="post" action="<?URL::toRoute('user/update')?>">
-    <div class="container">
-        <div class="row">
-            <label for="nome">Nome:</label><br>
-            <input type="text" name="nome" placeholder="Nome">
+<nav class="navbar sticky-top navbar-light bg-light">
+    <a class="navbar-brand" href="#">Sticky top</a>
+</nav>
 
-            <label for="morada">Morada:</label>
-            <input type="text" name="morada" placeholder="Morada">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown link
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-            <label for="telefone">Telefone:</label>
-            <input type="number" max="9" name="telefone" placeholder="telefone">
+<div class="container register-form">
+    <div class="form">
+        <form method="post" action="<?URL::toRoute('user/update')?>">
+        <div class="titulo">
+            <h1>Informações Cliente</h1>
         </div>
-        <div class="row">
-            <h1>Informações Especiais</h1>
-        </div>
-        <div class="row">
-            <label for="nif">NIF:</label><br>
-            <input type="texts" name="nif" placeholder="NIF">
 
-            <label for="password">Password:</label><br>
-            <input type="password" name="password" placeholder="Password">
-
-            <input type="submit" value="Alterar">
+        <div class="form-content">
+            <div class="row">
+                <div class="col-md-4 left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nome" name="nome"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Morada" name="morada"/>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Telefone" name="telefone"/>
+                </div>
+                <div class="col-md-4 right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="NIF" name="nif"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password"/>
+                    </div>
+                    <button type="button" class="btnSubmit">Submit</button>
+                </div>
+            </div>
         </div>
     </div>
-</form>
+    </form>
+</div>
+
 </body>
 </html>

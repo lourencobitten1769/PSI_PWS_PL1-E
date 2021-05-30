@@ -135,8 +135,8 @@ class UserController extends BaseController implements ResourceControllerInterfa
      */
     public function destroy($id)
     {
-        $book = book::find([$id]);
-        $book->delete();
-        Redirect::toRoute('book/index');
+        $user = User::find([$id]);
+        $user->delete();
+        Redirect::toRoute('user/index');
     }
 }
