@@ -68,15 +68,18 @@ class UserController extends BaseController implements ResourceControllerInterfa
         $user = new User(Post::getAll());
 
 
-        $userisset= User::find_by_username_and_password($user->username,$user->password);
+        $userisset = User::find_by_username_and_password($user->username, $user->password);
 
         if (is_null($userisset)) {
             //TODO redirect to standard error page
         } else {
-            $_SESSION['login']=$user->username;
-            return View::make('user.index');
-        }
+            $_SESSION['login'] = $user->username;
+            $_SESSION['perfil'] = $userisset->id_perfil;
 
+            echo $_SESSION['perfil'];
+
+            //return View::make('home.index');
+        }
     }
 
 

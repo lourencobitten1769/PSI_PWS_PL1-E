@@ -1,0 +1,10 @@
+body{
+    background-color: yellow;
+    font-size: 20px
+}
+nav{
+    margin-left: 40%;
+}
+a.btn.btn-success{
+    width: 100px;
+}
