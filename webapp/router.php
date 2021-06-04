@@ -26,6 +26,9 @@ Router::resource('user', 'UserController');
 
 Router::get('test/index',  'TestController/index');
 
+Router::get('backoffice/login',		'BackOfficeController/login');
+
+
 
 
 
