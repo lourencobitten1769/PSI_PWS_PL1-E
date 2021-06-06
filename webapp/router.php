@@ -22,11 +22,15 @@ Router::get('home/start',	'HomeController/start');
 Router::get('user/create',	'UserController/create');
 Router::get('user/store',	'UserController/store');
 */
+Router::get('user/register','UserController/register');
+
+
 Router::resource('user', 'UserController');
 
 Router::get('test/index',  'TestController/index');
 
 Router::get('backoffice/login',		'BackOfficeController/login');
+Router::get('backoffice/home','BackOfficeController/home');
 
 
 

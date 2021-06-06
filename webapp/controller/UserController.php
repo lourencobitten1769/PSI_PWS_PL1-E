@@ -83,6 +83,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
     }
 
 
+
     /**
      * return a detailed view with record where PK = $id
      */

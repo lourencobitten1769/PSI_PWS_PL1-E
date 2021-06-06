@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BackOffice Home</title>
+</head>
+<body>
+<?php use ArmoredCore\WebObjects\Layout;
+
+if($_SESSION['perfil']==2){
+    Layout::includeLayout('adminnav');
+}
+else if($_SESSION['perfil']==3){
+    Layout::includeLayout('gestornav');
+}
+else if($_SESSION['perfil']==4){
+    Layout::includeLayout('operadorNav');
+}?>
+
+
+
+</body>
+</html>
