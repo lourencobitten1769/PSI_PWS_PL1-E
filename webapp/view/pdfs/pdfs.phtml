@@ -1,4 +1,19 @@
 <?php
+
+//esta parte é so pra teste
+
+$html = "";
+
+$result_aeroportos = "SELECT * FROM aeroportos";
+$resultado_aeroportos =   mysqli_query($conn, $result_aeroportos);
+while($row_aeroportos = mysqli_fetch_assoc($resultado_aeroportos)){
+$html .=$row_aeroportos['id_aeroporto'] . "<br>";
+$html .=$row_aeroportos['nome_aeroporto'] . "<br>";
+$html .=$row_aeroportos['localidade '] . "<br>";
+
+}
+echo $html;
+
 //chamar o dompdf com namespace por causa do conflito de nomes
 use Dompdf\Dompdf;
 
@@ -11,6 +26,8 @@ $pdf = new PDF();
 //Colocar dados no PDF
 $pdf->load_hmtl('
 <h1>Bilhete para a china no voo 377</h1>
+
+'. $html .'
 ');
 
 //renderizar o html
