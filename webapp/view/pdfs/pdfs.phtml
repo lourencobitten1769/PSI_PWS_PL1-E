@@ -1,0 +1,28 @@
+<?php
+//chamar o dompdf com namespace por causa do conflito de nomes
+use Dompdf\Dompdf;
+
+// include autoloader
+require_once 'pdfs/autoload.inc.php';
+
+//Criar a instancia
+$pdf = new PDF();
+
+//Colocar dados no PDF
+$pdf->load_hmtl('
+<h1>Bilhete para a china no voo 377</h1>
+');
+
+//renderizar o html
+$pdf->render();
+
+//mostrar a pagina
+$pdf->stream(
+    "Bilhete_voo_377",
+
+    array(
+        "Attachment" => false //true faz download automatico, false faz download facultativo
+    )
+    );
+
+?>
