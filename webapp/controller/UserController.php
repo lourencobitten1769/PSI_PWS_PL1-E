@@ -78,7 +78,12 @@ class UserController extends BaseController implements ResourceControllerInterfa
 
             echo $_SESSION['perfil'];
 
-            //return View::make('home.index');
+            if($_SESSION['perfil']!=1){
+                return View::make('backoffice.home');
+            }
+            else{
+                return View::make('home.index');
+            }
         }
     }
 
@@ -119,8 +124,6 @@ class UserController extends BaseController implements ResourceControllerInterfa
      */
     public function update($id)
     {
-        //find resource (activerecord/model) instance where PK = $id
-        //your form name fields must match the ones of the table fields
         $user = User::find([$id]);
         $user->update_attributes(Post::getAll());
 

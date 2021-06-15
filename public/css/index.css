@@ -1,0 +1,39 @@
+#myCarousel{
+    height:400px;
+}
+#image1{
+    height: 400px;
+    width: 1920px;
+}
+#image2{
+    height: 400px;
+    width: 1920px;
+}
+#image3{
+    height: 400px;
+    width: 1920px;
+}
+
+form{
+    margin-top: 20px;
+    margin-left: 40%;
+    width: 30%;
+    height: 150px;
+    background-color: grey;
+    border: black solid 1px;
+}
+
+#rbOrigemDestino{
+    margin-left: 20%;
+}
+#rbData{
+    margin-left: 10%;
+}
+
+select{
+    margin-left: 15%;
+}
+
+#pesquisar{
+    margin-left: 40%;
+}

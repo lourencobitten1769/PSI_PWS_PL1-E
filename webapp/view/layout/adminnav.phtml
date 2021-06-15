@@ -6,7 +6,6 @@ use ArmoredCore\Facades\AssetBundler;
 use ArmoredCore\Facades\DebugRenderer;
 use ArmoredCore\WebObjects\URL;
 
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +47,7 @@ use ArmoredCore\WebObjects\URL;
                 <a class="nav-link" href="#">Contas de Gestores de Voo</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Gestão de Aeroportos</a>
+                <a class="nav-link" href="<?= URL::toRoute('aeroporto/index')?>">Gestão de Aeroportos</a>
             </li>
         </ul>
 

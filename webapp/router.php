@@ -32,6 +32,8 @@ Router::get('test/index',  'TestController/index');
 Router::get('backoffice/login',		'BackOfficeController/login');
 Router::get('backoffice/home','BackOfficeController/home');
 
+Router::resource('aeroporto', 'AeroportoController');
+//Router::get('aeroporto/home','AeroportoController/home');
 
 
 
