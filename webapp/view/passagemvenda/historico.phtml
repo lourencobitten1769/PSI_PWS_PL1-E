@@ -1,0 +1,62 @@
+<?php
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
+
+
+if(!isset($_SESSION['perfil'])){
+    Layout::includeLayout('nologinnav');
+}
+else if($_SESSION['perfil']==1){
+    Layout::includeLayout('usernav');
+}
+
+$passagens= Data::get('passagens');
+$origens= Data::get('origens');
+$destinos= Data::get('destinos');
+//var_dump($origens);
+//var_dump($voos);
+//echo $_SESSION['id'];
+?>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <?php
+
+    foreach ($passagens as $passagem){
+
+            foreach($origens as $origem)
+            {
+
+                foreach($destinos as $destino){
+
+                echo '<hr>';
+
+                echo '<br>Aeroporto de partida:' . $origem->nome_aeroporto;
+
+
+                echo '<br>Aeroporto de Chegada:'. $destino->nome_aeroporto;
+
+                echo '<br>Preço: ' . $passagem->preco;
+
+                echo '<br>Data de Compra: ' . $passagem->data_compra;
+
+                ?>
+
+                    <a href="<?= Url::toRoute('passagemvenda/pdfs')?>"><button class="btn btn-success">Visualizar</button></a>
+
+                <?php
+                }
+            }
+
+
+    }
+    ?>
+</body>

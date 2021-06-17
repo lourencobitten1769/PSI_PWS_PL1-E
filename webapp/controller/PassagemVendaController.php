@@ -41,6 +41,26 @@ class PassagemVendaController extends BaseController
        return View::make('passagemvenda.comprarPassagem',['voos'=>$voos]);
     }
 
+
+    public function HistoricoPassagem(){
+
+        $id=$_SESSION['id'];
+        //echo $id;
+
+       // $passagens=PassagemVenda::find_by_sql('select * from `passagem_vendas` where id_utilizador=?',array($id));
+        $passagens = PassagemVenda::find_all_by_id_utilizador($id);
+        foreach($passagens as $passagem){
+            $origem=Aeroporto::find_by_sql('select nome_aeroporto from `aeroportos` where id_aeroporto=?',array($passagem->origem));
+            $destino=Aeroporto::find_by_sql('select nome_aeroporto from aeroportos where id_aeroporto=?',array($passagem->destino));
+           // var_dump($origem);
+            //var_dump($destino);
+        }
+        //var_dump($origem);
+        //var_dump($passagens);
+
+        return View::make('passagemvenda.historico',['passagens'=>$passagens,'origens'=>$origem,'destinos'=>$destino]);
+    }
+
     public function pdfs(){
         $passagensVendas = PassagemVenda::all();
 
