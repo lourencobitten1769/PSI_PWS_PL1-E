@@ -13,17 +13,31 @@ use ArmoredCore\WebObjects\Post;
  * Date: 09-05-2016
  * Time: 11:30
  */
-class PassagensController extends BaseController
+class VooController extends BaseController
 {
 
     public function index(){
 
         $aeroportos = Aeroporto::all();
-        return View::make('aeroporto.gestaoAeroportos',['aeroportos'=> $aeroportos]);
+        return View::make('passagemvenda.index',['aeroportos'=> $aeroportos]);
     }
 
-    public function create(){
+    public function MostrarVoosAssociados(){
+        echo $_SESSION['id'];
 
+
+
+        $join = 'LEFT JOIN escalas e ON(voo.id_escala = e.id_escala)';
+        $voos = Voo::all(array('joins' => $join));
+        //var_dump($passagens);
+        return View::make('passagemvenda.comprarPassagem',['voos'=>$voos]);
+    }
+
+    public function pdfs(){
+        $passagensVendas = PassagemVenda::all();
+
+        //$passagensVendas->id_passagem;
+        return View::make('passagemvenda.pdfs',['passagensvendas'=>$passagensVendas]);
     }
 
     public function edit($id){

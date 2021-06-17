@@ -2,7 +2,7 @@
 
 use \ActiveRecord\Model;
 
-class PassagemVenda extends Model
+class Voo extends Model
 {
 
 }

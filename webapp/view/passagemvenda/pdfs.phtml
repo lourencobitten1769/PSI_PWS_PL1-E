@@ -1,0 +1,50 @@
+<?php
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
+
+//esta parte é so pra teste
+
+$passagensVendas= Data::get('passagensvendas');
+
+foreach ($passagensVendas as $passagem){
+    $html="ID de passagem:" . $passagem->id_passagem . "<br> Preço:".$passagem->preco. "<br> Data de Compra da Passagem:" . $passagem->data_compra . "<br>";
+    if($passagem->ida_volta==0){
+        $html=$html."Ida e volta: Não";
+    }
+    else{
+        $html= $html."Ida e volta: Sim";
+    }
+}
+
+
+
+//chamar o dompdf com namespace por causa do conflito de nomes
+use Dompdf\Dompdf;
+
+// include autoloader
+require_once 'D:\wamp64\www\PSI_PWS_PL1-E\pdfs\autoload.inc.php';
+
+//Criar a instancia
+$pdf = new Dompdf();
+
+//Colocar dados no PDF
+$pdf->loadHtml('
+<h1>Bilhete para a china no voo 377</h1>
+
+'. $html . '
+');
+
+//renderizar o html
+$pdf->render();
+
+//mostrar a pagina
+$pdf->stream(
+    "Bilhete_voo_377",
+
+    array(
+        "Attachment" => false //true faz download automatico, false faz download facultativo
+    )
+    );
+
+?>

@@ -2,13 +2,18 @@
 use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
 
 if(!isset($_SESSION['perfil'])){
     Layout::includeLayout('nologinnav');
 }
 else if($_SESSION['perfil']==1){
     Layout::includeLayout('usernav');
+
 }
+
+$aeroportos= Data::get('aeroportos');
 ?>
 
 <head>
@@ -53,32 +58,30 @@ else if($_SESSION['perfil']==1){
         </a>
     </div>
 
-    <form>
-        <input type="radio" id="rbOrigemDestino" name="rbOrigemDestino" checked>
+    <form method="post" action="<?=Url::toRoute('passagemvenda/ListarVoosConsoanteAOrigem')?>">
+        <!--<input type="radio" id="rbOrigemDestino" name="rbOrigemDestino" checked>
         Por origem e destino
 
         <input type="radio" id="rbData" name="rbData">
         Por data
-
+        -->
         <br><br>
 
-       <select>
-           <option>Partida</option>
-           <option>1</option>
-           <option>2</option>
-           <option>3</option>
+       <select id="partida" name="partida">
+            <?php
+
+            foreach ($aeroportos as $aeroporto) { ?>
+            <option value="<?=$aeroporto->id_aeroporto?>"><?=$aeroporto->nome_aeroporto?></option>
+            <?php
+            }
+            ?>
        </select>
-        <select id="chegada">
-            <option>Chegada</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-        </select>
-        <select id="data">
-            <option>Data</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+        <select id="chegada" name="chegada">
+            <?php foreach ($aeroportos as $aeroporto) { ?>
+                <option value="<?=$aeroporto->id_aeroporto?>>"><?=$aeroporto->nome_aeroporto?></option>
+                <?php
+            }
+            ?>
         </select>
         <br><br>
         <input type="submit" class="btn btn-success" value="Pesquisar" id="pesquisar">

@@ -16,8 +16,8 @@ class HomeController extends BaseController
 {
 
     public function index(){
-
-        return View::make('home.index');
+        $aeroportos=Aeroporto::all();
+        return View::make('home.index',['aeroportos'=> $aeroportos]);
     }
 
     public function start(){

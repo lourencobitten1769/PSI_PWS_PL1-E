@@ -1,0 +1,54 @@
+<?php
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
+
+
+if(!isset($_SESSION['perfil'])){
+    Layout::includeLayout('nologinnav');
+}
+else if($_SESSION['perfil']==1){
+    Layout::includeLayout('usernav');
+}
+
+$voos= Data::get('voos');
+//var_dump($voos);
+//echo $_SESSION['id'];
+?>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<form action="<?=Url::toRoute('passagemvenda/store')?>" method="post">
+    <?php
+
+    foreach ($voos as $voo){
+
+
+    ?>
+    <hr>
+    <br><input type='hidden' name='preco' value="<?=$voo->preco_voo?>">
+    <br><input type='hidden' name='checkin' value="<?=0?>">
+    <br><input type='hidden' name='ida_volta' value="<?=0?>">
+    <br><input type='hidden' name='origem' value="<?=$voo->origem?>">
+    <br><input type='hidden' name='destino' value="<?=$voo->destino?>">
+    <br><input type='hidden' name='id_voo' value="<?=$voo->id_voo?>">
+    <br><input type='hidden' name='id_utilizador' value="<?=$_SESSION['id']?>">
+    Aeroporto de partida: <?=$voo->nome_aeroporto;?>
+    <br>Aeroporto de Chegada:<?=$voo->nome_aeroporto;
+    echo "<br>Preço:". $voo->preco_voo;
+    echo "<br>Tempo de Voo:". $voo->distancia;
+    echo "<br><input type='submit' class='btn btn-success' value='Comprar'>";
+    echo "<hr>";
+    }
+    ?>
+</form>
+
+</body>
+

@@ -73,6 +73,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
         if (is_null($userisset)) {
             //TODO redirect to standard error page
         } else {
+            $_SESSION['id']= $userisset->id_utilizador;
             $_SESSION['login'] = $user->username;
             $_SESSION['perfil'] = $userisset->id_perfil;
 
@@ -82,7 +83,8 @@ class UserController extends BaseController implements ResourceControllerInterfa
                 return View::make('backoffice.home');
             }
             else{
-                return View::make('home.index');
+                $aeroportos = Aeroporto::all();
+                return View::make('home.index', ['aeroportos'=> $aeroportos]);
             }
         }
     }
