@@ -3,7 +3,7 @@ use ArmoredCore\WebObjects\ErrMgr;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 
-$aeroporto = Data::get('aeroporto') ?>
+$aviao = Data::get('aviao') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,23 +18,28 @@ $aeroporto = Data::get('aeroporto') ?>
 
 <div class="container register-form">
     <div class="form">
-        <form method="post" action="<?=URL::toRoute('aeroporto/update',$aeroporto->id_aeroporto)?>">
+        <form method="post" action="<?=URL::toRoute('aviao/update',$aviao->id_aviao)?>">
             <div class="titulo">
-                <h1>Informações dos Aeroportos</h1>
+                <h1>Informações do Avião</h1>
             </div>
 
             <div class="form-content">
                 <div class="row">
                     <div class="col-md-4 left">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nome do Aeroporto" value="<?=$aeroporto->nome_aeroporto?>" name="nome_aeroporto"/>
+                            <input type="text" class="form-control" placeholder="Referência" value="<?=$aviao->referencia?>" name="referencia"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Localidade" value="<?=$aeroporto->localidade?>" name="localidade"/>
-                            <button type="submit" class="btnSubmit">Submit</button>
+                            <input type="text" class="form-control" placeholder="Lotação" value="<?=$aviao->lotacao?>" name="lotacao"/>
+                        </div>
                     </div>
+                    <div class="col-md-4 right">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Localidade" value="<?=$aviao->tipo_aviao?>" name="tipo_aviao"/>
+                            <br>
+                            <button type="submit" class="btnSubmit">Submit</button>
+                        </div>
                 </div>
             </div>
+        </form>
     </div>
-    </form>
-</div>

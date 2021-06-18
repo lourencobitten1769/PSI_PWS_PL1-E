@@ -36,6 +36,10 @@ Router::resource('aeroporto', 'AeroportoController');
 //Router::get('aeroporto/home','AeroportoController/home');
 
 Router::resource('passagemvenda','PassagemVendaController');
+Router::resource('aviao','AviaoController');
+//Router::get('aviao/gestaoAvioes','AviaoController/ListarAvioes');
+//Router::get('aviao/edit','AviaoController/edit');
+//Router::get('aviao/gestaoAvioes','AviaoController/update');
 
 
 

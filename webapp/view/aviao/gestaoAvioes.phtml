@@ -1,0 +1,57 @@
+<?php
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
+if(!isset($_SESSION['perfil'])){
+    Layout::includeLayout('nologinnav');
+}
+else if($_SESSION['perfil']==1){
+    Layout::includeLayout('usernav');
+}
+
+$avioes= Data::get('avioes');
+?>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão Aviões</title>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="<?= Asset::css('/index.css')?>">
+
+</head>
+
+<table id="#myTable">
+    <thead>
+    <tr>
+        <th>
+            ID do Avião
+        </th>
+        <th>
+            Referência
+        </th>
+        <th>
+            Lotação
+        </th>
+        <th>
+            Tipo de Avião
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($avioes as $aviao) { ?>
+    <tr>
+        <td><?=$aviao->id_aviao?></td>
+        <td><?=$aviao->referencia?></td>
+        <td><?=$aviao->lotacao?></td>
+        <td><?=$aviao->tipo_aviao?></td>
+        <td><a href="<?= Url::toRoute('aviao/edit',$aviao->id_aviao)?>">Edit</a> </td>
+        <td><a href="<?= Url::toRoute('aviao/delete',$aviao->id_aviao)?>">Delete</a> </td>
+
+    </tr>
+    </tbody>
+    <?php } ?>
+</table>
