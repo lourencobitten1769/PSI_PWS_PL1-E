@@ -41,7 +41,7 @@ class VooController extends BaseController
 
         foreach($voos as $voo){
 
-            $voo=Voo::find();
+            $escalas=Escala::find_all_by_id_escala($voo->id_escala);
 
             foreach($escalas as $escala)
             {
