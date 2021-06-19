@@ -1,0 +1,64 @@
+<?php
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
+if(!isset($_SESSION['perfil'])){
+    Layout::includeLayout('nologinnav');
+}
+else if($_SESSION['perfil']==1){
+    Layout::includeLayout('usernav');
+}
+
+$voos= Data::get('voos');
+$origem= Data::get('origem');
+$destino= Data::get('destino');
+?>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão Voos</title>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="<?= Asset::css('/index.css')?>">
+
+</head>
+
+<table id="#myTable">
+    <thead>
+    <tr>
+        <th>
+            ID do Voo
+        </th>
+        <th>
+            Preço
+        </th>
+        <th>
+            Origem
+        </th>
+        <th>
+            Destino
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($voos as $voo) { ?>
+    <tr>
+        <td><?=$voo->id_voo?></td>
+        <td><?=$voo->preco_voo?></td>
+            <? foreach($origem as $origem)
+            { ?>
+        <td><?=$origem->nome_aeroporto?></td>
+        <? foreach($destino as $destino){?>
+        <td><?=$destino->nome_aeroporto?></td>
+        }
+        }
+        <td><a href="<?= Url::toRoute('voo/edit',$voo->id_voo)?>">Edit</a> </td>
+        <td><a href="<?= Url::toRoute('voo/delete',$voo->id_voo)?>">Delete</a> </td>
+
+    </tr>
+    </tbody>
+    <?php } ?>
+</table>

@@ -33,6 +33,26 @@ class VooController extends BaseController
         return View::make('passagemvenda.comprarPassagem',['voos'=>$voos]);
     }
 
+    public function ListarVoos(){
+
+        // -------------------- AQUI ------------------------
+
+        $voos=Voo::all();
+
+        foreach($voos as $voo){
+
+            $voo=Voo::find();
+
+            foreach($escalas as $escala)
+            {
+                $origem=Aeroporto::find_by_sql('select nome_aeroporto from `aeroportos` where id_aeroporto=?',array($escala->origem));
+                $destino=Aeroporto::find_by_sql('select nome_aeroporto from aeroportos where id_aeroporto=?',array($escala->destino));
+            }
+        }
+
+        return View::make('voo.gestaoVoos',['voos'=>$voos,'origem'=>$origem,'destino'=>$destino]);
+    }
+
     public function pdfs(){
         $passagensVendas = PassagemVenda::all();
 
