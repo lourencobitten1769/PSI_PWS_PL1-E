@@ -1,0 +1,43 @@
+<?php
+
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+
+$passagens= Data::get('passagens');
+$origens= Data::get('origens');
+$destinos= Data::get('destinos');
+
+foreach ($passagens as $passagem){
+
+    foreach($origens as $origem)
+    {
+
+        foreach($destinos as $destino){
+
+            echo '<hr>';
+
+            echo '<br>Aeroporto de partida:' . $origem->nome_aeroporto;
+
+
+            echo '<br>Aeroporto de Chegada:'. $destino->nome_aeroporto;
+
+            echo '<br>Preço: ' . $passagem->preco;
+
+            echo '<br>Data de Compra: ' . $passagem->data_compra;
+
+            if($passagem->checkin==0)
+            {
+                echo '<br>Checkin Realizado: Não';
+            }
+            if($passagem->checkin==1)
+            {
+                echo '<br>Checkin Realizado: Sim';
+            }
+
+            ?>
+            <?php
+        }
+    }
+}

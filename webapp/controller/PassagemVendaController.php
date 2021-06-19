@@ -112,6 +112,31 @@ class PassagemVendaController extends BaseController
         }*/
     }
 
+    public function fazerCheckin(){
+        $passagens= PassagemVenda::all(array('conditions' => array('checkin = 0')));
+        foreach($passagens as $passagem){
+            $origem=Aeroporto::find_by_sql('select nome_aeroporto from `aeroportos` where id_aeroporto=?',array($passagem->origem));
+            $destino=Aeroporto::find_by_sql('select nome_aeroporto from aeroportos where id_aeroporto=?',array($passagem->destino));
+        }
+        return View::make('passagemvenda.fazerCheckin',['passagens'=>$passagens,'origens'=>$origem,'destinos'=>$destino]);
+    }
+
+    public function confirmarCheckin($id){
+        $passagem= PassagemVenda::find([$id]);
+        $passagem->update_attribute('checkin', 1);
+        $passagem->save();
+        Redirect::toRoute('passagemvenda/fazerCheckin');
+    }
+
+    public function passagensCompradasNosUltimos15dias(){
+        $passagens=PassagemVenda::find_by_sql('SELECT * FROM passagem_vendas WHERE DATEDIFF(NOW(), data_compra)<=15;');
+        foreach($passagens as $passagem){
+            $origem=Aeroporto::find_by_sql('select nome_aeroporto from `aeroportos` where id_aeroporto=?',array($passagem->origem));
+            $destino=Aeroporto::find_by_sql('select nome_aeroporto from aeroportos where id_aeroporto=?',array($passagem->destino));
+        }
+        return View::make('passagemvenda.detalhesPassagens',['passagens'=>$passagens,'origens'=>$origem,'destinos'=>$destino]);
+    }
+
 
     public function worksheet(){
 

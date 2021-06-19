@@ -60,6 +60,12 @@ class AviaoController extends BaseController
         }
     }
 
+    public function delete($id)
+    {
+        $aviao = Avioe::find([$id]);
+        $aviao->delete();
+        Redirect::toRoute('aviao/ListarAvioes');
+    }
 
     public function worksheet(){
 
