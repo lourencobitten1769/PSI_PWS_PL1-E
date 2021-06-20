@@ -3,7 +3,9 @@ use ArmoredCore\WebObjects\ErrMgr;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 
-$escala = Data::get('escala') ?>
+$escala = Data::get('escala');
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +32,7 @@ $escala = Data::get('escala') ?>
                             <input type="text" class="form-control" placeholder="Distância" value="<?=$escala->distancia?>" name="distancia"/>
                         </div>
                         <div class="form-group">
-                            <input type="date" class="form-control" placeholder="Data" value="<?=$escala->data?>" name="data"/>
+                            <input type="datetime-local" class="form-control" placeholder="Data" value="<?=$escala->data?>" name="data"/>
                         </div>
                     </div>
                     <div class="col-md-4 right">

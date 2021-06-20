@@ -25,6 +25,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
     public function index()
     {
         $users = User::all();
+
         return View::make('user.index', ['users' => $users]);
     }
 

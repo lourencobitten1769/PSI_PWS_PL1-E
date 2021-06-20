@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use ArmoredCore\WebObjects\Debug;
 use ArmoredCore\WebObjects\Post;
 
+ActiveRecord\Connection::$datetime_format = 'Y-m-d H:i:s';
+
 /**
  * Created by PhpStorm.
  * User: smendes
@@ -31,21 +33,53 @@ class EscalaController extends BaseController
 
     public function create()
     {
-        return View::make('escala.new');
+        $aeroportos=Aeroporto::all();
+        $aviao=Avioe::all();
+        return View::make('escala.new',['aeroportos'=>$aeroportos,'avioes'=>$aviao]);
     }
 
     public function store()
     {
         //create new resource (activerecord/model) instance with data from POST
         //your form name fields must match the ones of the table fields
-        $escala = new Escala(Post::getAll());
 
-        if($escala->is_valid()){
-            $escala->save();
+
+
+        $escala = new Escala();
+        $escala->distancia= Post::get('distancia');
+        $escala->data= Post::get('data');
+        $escala->origem= Post::get('origem');
+        $escala->destino= Post::get('destino');
+
+
+
+            $query=Escala::find_by_origem_and_destino($escala->origem,$escala->destino);
+            //var_dump($query);
+            if($query==null){
+                $escala->save();
+                Redirect::toRoute('escala/gestaoEscalas');
+            }
+            else{
+                echo "Já existe";
+            }
+
+        $escalaInserida=Escala::last();
+        $aviaoEscala= new AvioesEscala();
+        $query=AvioesEscala::find_by_id_escala_and_id_aviao($escalaInserida->id_escala,Post::get('id_aviao'));
+        //var_dump($query);
+        if($query==null) {
+            $aviaoEscala->id_escala = $escalaInserida->id_escala;
+            $aviaoEscala->id_aviao = Post::get('id_aviao');
+            $aviaoEscala->save();
+            $aviaoEscalaInserido=AvioesEscala::last();
+            var_dump($aviaoEscalaInserido);
+            $escalaInserida->update_attribute('id_aviaoescala',$aviaoEscalaInserido->id_aviaoescala);
+            $escalaInserida->save();
             Redirect::toRoute('escala/gestaoEscalas');
-        } else {
-            //redirect to form with data and errors
-            Redirect::flashToRoute('escala/create', ['escala' => $escala]);
+        }
+        else{
+            echo "Já existe";
+
         }
     }
 

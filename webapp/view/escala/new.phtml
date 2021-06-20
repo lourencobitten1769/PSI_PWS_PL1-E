@@ -2,6 +2,10 @@
 use ArmoredCore\WebObjects\ErrMgr;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
+
+$aeroportos=Data::get('aeroportos');
+$avioes=Data::get('avioes');
+
 ?>
 
 <!DOCTYPE html>
@@ -32,19 +36,47 @@ use ArmoredCore\WebObjects\URL;
                             <input type="datetime-local" class="form-control" placeholder="Data" value="" name="data"/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Origem" value="" name="origem"/>
+
                         </div>
                     </div>
                     <div class="col-md-4 right">
+                        <select name="origem">
+                            <?php
+                            foreach ($aeroportos as $aeroporto)
+                            {
+                                ?>
+                                <option value="<?=$aeroporto->id_aeroporto?>"><?=$aeroporto->nome_aeroporto?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <br><br>
                         <div class="form-group">
+                            <select name="destino">
+                                <?php
+                                foreach ($aeroportos as $aeroporto)
+                                {
+                                    ?>
+                                    <option value="<?=$aeroporto->id_aeroporto?>"><?=$aeroporto->nome_aeroporto?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                            <br><br>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Destino" value="" name="destino"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Avião" value="" name="aviao_escala"/>
+                                <select name="id_aviao" id="id_aviao">
+                                <?php
+                                foreach ($avioes as $aviao)
+                                {
+                                    ?>
+                                    <option value="<?=$aviao->id_aviao?>"><?=$aviao->referencia . "-" . $aviao->tipo_aviao?></option>
+                                    <?php
+                                }
+                                ?>
+                                </select>
                             </div>
                             <br>
-                            <button type="submit" class="btnSubmit">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
                 </div>

@@ -35,7 +35,7 @@ class VooController extends BaseController
 
         if($voo->is_valid()){
             $voo->save();
-            Redirect::toRoute('voo/gestaoVoos');
+            Redirect::toRoute('voo/ListarVoos');
         } else {
             //redirect to form with data and errors
             Redirect::flashToRoute('voo/create', ['voo' => $voo]);
