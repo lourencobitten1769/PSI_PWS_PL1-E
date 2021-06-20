@@ -23,8 +23,10 @@ $avioes= Data::get('avioes');
     <link rel="stylesheet" href="<?= Asset::css('/index.css')?>">
 
 </head>
+<h1>Aviões</h1>
+<a href="<?= Url::toRoute('aviao/create')?>" class="btn btn-success">Inserir Avião</a>
 
-<table id="#myTable">
+<br><br><table id="#myTable">
     <thead>
     <tr>
         <th>

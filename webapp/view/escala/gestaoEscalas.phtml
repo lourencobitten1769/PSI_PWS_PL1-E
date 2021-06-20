@@ -11,14 +11,14 @@ else if($_SESSION['perfil']==1){
     Layout::includeLayout('usernav');
 }
 
-$voos= Data::get('voos');
+$escalas= Data::get('escalas');
 $origens= Data::get('origem');
 $destinos= Data::get('destino');
 ?>
 
 <head>
     <meta charset="UTF-8">
-    <title>Gestão Voos</title>
+    <title>Gestão Escalas</title>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -28,12 +28,12 @@ $destinos= Data::get('destino');
 
 <?php
 
-echo '<h1>Voos Disponiveis</h1>';
+echo '<h1>Escalas</h1>';
 ?>
-<a href="<?= Url::toRoute('voo/create')?>" class="btn btn-success">Inserir Voo</a>
+<button href="<?= Url::toRoute('escala/')?>"class="btn btn-success">Inserir Escala</button>
 <form>
     <?php
-    foreach ($voos as $voo){
+    foreach ($escalas as $escala){
 
         foreach($origens as $origem)
         {
@@ -41,23 +41,25 @@ echo '<h1>Voos Disponiveis</h1>';
             {
                 echo '<hr>';
 
-                echo 'Id do Voo: ' . $voo->id_voo;
+                echo 'Id da Escala: ' . $escala->id_escala;
 
-                echo '<br>Preço: ' . $voo->preco_voo;
+                echo '<br>Distância: ' . $escala->distancia;
+
+                echo '<br>Data: ' . $escala->data;
 
                 echo '<br>Aeroporto de partida:' . $origem->nome_aeroporto;
 
 
                 echo '<br>Aeroporto de Chegada:'. $destino->nome_aeroporto;
-?>
+                ?>
                 <div>
 
-                <br><a href="<?= Url::toRoute('voo/edit',$voo->id_voo)?>">Editar</a>
+                    <br><a href="<?= Url::toRoute('escala/edit',$escala->id_escala)?>">Editar</a>
 
-                <br><a href="<?= Url::toRoute('voo/destroy',$voo->id_voo)?>">Eliminar</a>
+                    <br><a href="<?= Url::toRoute('escala/destroy',$escala->id_escala)?>">Eliminar</a>
 
                 </div>
-<?php
+                <?php
             }
 
         }

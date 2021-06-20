@@ -22,6 +22,28 @@ class VooController extends BaseController
         return View::make('passagemvenda.index',['aeroportos'=> $aeroportos]);
     }
 
+    public function create()
+    {
+        return View::make('voo.new');
+    }
+
+    public function store()
+    {
+        //create new resource (activerecord/model) instance with data from POST
+        //your form name fields must match the ones of the table fields
+        $voo = new Voo(Post::getAll());
+
+        if($voo->is_valid()){
+            $voo->save();
+            Redirect::toRoute('voo/gestaoVoos');
+        } else {
+            //redirect to form with data and errors
+            Redirect::flashToRoute('voo/create', ['voo' => $voo]);
+        }
+    }
+
+
+
     public function MostrarVoosAssociados(){
         echo $_SESSION['id'];
 
@@ -34,8 +56,6 @@ class VooController extends BaseController
     }
 
     public function ListarVoos(){
-
-        // -------------------- AQUI ------------------------
 
         $voos=Voo::all();
 
@@ -61,12 +81,12 @@ class VooController extends BaseController
     }
 
     public function edit($id){
-        $aeroporto = Aeroporto::find([$id]);
+        $voo = Voo::find([$id]);
 
-        if (is_null($aeroporto)) {
+        if (is_null($voo)) {
             //TODO redirect to standard error page
         } else {
-            return View::make('aeroporto.edit', ['aeroporto' => $aeroporto]);
+            return View::make('voo.edit', ['voo' => $voo]);
         }
     }
 
@@ -74,16 +94,23 @@ class VooController extends BaseController
     {
         //find resource (activerecord/model) instance where PK = $id
         //your form name fields must match the ones of the table fields
-        $aeroporto = Aeroporto::find([$id]);
-        $aeroporto->update_attributes(Post::getAll());
+        $voo = Voo::find([$id]);
+        $voo->update_attributes(Post::getAll());
 
         //if($aeroporto->is_valid()){
-            $aeroporto->save();
-            Redirect::toRoute('aeroporto/index');
+            $voo->save();
+            Redirect::toRoute('voo/ListarVoos');
         /*} else {
             //redirect to form with data and errors
             Redirect::flashToRoute('aeroporto/edit', ['aeroporto' => $aeroporto]);
         }*/
+    }
+
+    public function destroy($id)
+    {
+        $voo = Voo::find([$id]);
+        $voo->delete();
+        Redirect::toRoute('voo/ListarVoos');
     }
 
 

@@ -13,42 +13,51 @@ use ArmoredCore\WebObjects\Post;
  * Date: 09-05-2016
  * Time: 11:30
  */
-class AeroportoController extends BaseController
+class EscalaController extends BaseController
 {
 
-    public function index(){
+    public function ListarEscalas(){
 
-        $aeroportos = Aeroporto::all();
-        return View::make('aeroporto.gestaoAeroportos',['aeroportos'=> $aeroportos]);
+        $escalas=Escala::all();
+
+            foreach($escalas as $escala)
+            {
+                $origem=Aeroporto::find_by_sql('select nome_aeroporto from `aeroportos` where id_aeroporto=?',array($escala->origem));
+                $destino=Aeroporto::find_by_sql('select nome_aeroporto from aeroportos where id_aeroporto=?',array($escala->destino));
+            }
+
+        return View::make('escala.gestaoEscalas',['escalas'=>$escalas,'origem'=>$origem,'destino'=>$destino]);
     }
 
     public function create()
     {
-        return View::make('aeroporto.new');
+        return View::make('escala.new');
     }
 
     public function store()
     {
         //create new resource (activerecord/model) instance with data from POST
         //your form name fields must match the ones of the table fields
-        $aeroporto = new Aeroporto(Post::getAll());
+        $escala = new Escala(Post::getAll());
 
-        if($aeroporto->is_valid()){
-            $aeroporto->save();
-            Redirect::toRoute('aeroporto/index');
+        if($escala->is_valid()){
+            $escala->save();
+            Redirect::toRoute('escala/gestaoEscalas');
         } else {
             //redirect to form with data and errors
-            Redirect::flashToRoute('aeroporto/create', ['aeroporto' => $aeroporto]);
+            Redirect::flashToRoute('escala/create', ['escala' => $escala]);
         }
     }
 
-    public function edit($id){
-        $aeroporto = Aeroporto::find([$id]);
 
-        if (is_null($aeroporto)) {
+
+    public function edit($id){
+        $escala = Escala::find([$id]);
+
+        if (is_null($escala)) {
             //TODO redirect to standard error page
         } else {
-            return View::make('aeroporto.edit', ['aeroporto' => $aeroporto]);
+            return View::make('escala.edit', ['escala' => $escala]);
         }
     }
 
@@ -56,12 +65,12 @@ class AeroportoController extends BaseController
     {
         //find resource (activerecord/model) instance where PK = $id
         //your form name fields must match the ones of the table fields
-        $aeroporto = Aeroporto::find([$id]);
-        $aeroporto->update_attributes(Post::getAll());
+        $escala = Escala::find([$id]);
+        $escala->update_attributes(Post::getAll());
 
         //if($aeroporto->is_valid()){
-            $aeroporto->save();
-            Redirect::toRoute('aeroporto/index');
+        $escala->save();
+        Redirect::toRoute('escala/ListarEscalas');
         /*} else {
             //redirect to form with data and errors
             Redirect::flashToRoute('aeroporto/edit', ['aeroporto' => $aeroporto]);
@@ -70,9 +79,9 @@ class AeroportoController extends BaseController
 
     public function destroy($id)
     {
-        $aeroporto = Aeroporto::find([$id]);
-        $aeroporto->delete();
-        Redirect::toRoute('aeroporto/index');
+        $escala = Escala::find([$id]);
+        $escala->delete();
+        Redirect::toRoute('escala/ListarEscalas');
     }
 
 

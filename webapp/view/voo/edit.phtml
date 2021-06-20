@@ -1,0 +1,44 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+$voo = Data::get('voo') ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Voo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../public/css/edit.css">
+</head>
+<body>
+
+<div class="container register-form">
+    <div class="form">
+        <form method="post" action="<?=URL::toRoute('voo/update',$voo->id_voo)?>">
+            <div class="titulo">
+                <h1>Informações do Voo</h1>
+            </div>
+
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-4 left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Preço" value="<?=$voo->preco_voo?>" name="preco_voo"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Id da Escala" value="<?=$voo->id_escala?>" name="id_escala"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right">
+                        <div class="form-group">
+                            <br>
+                            <button type="submit" class="btnSubmit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>

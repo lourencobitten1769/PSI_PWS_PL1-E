@@ -1,0 +1,48 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+$escala = Data::get('escala') ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Escala</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../public/css/edit.css">
+</head>
+<body>
+
+<div class="container register-form">
+    <div class="form">
+        <form method="post" action="<?=URL::toRoute('escala/update',$escala->id_escala)?>">
+            <div class="titulo">
+                <h1>Informações da Escala</h1>
+            </div>
+
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-4 left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Distância" value="<?=$escala->distancia?>" name="distancia"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" placeholder="Data" value="<?=$escala->data?>" name="data"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Aeroporto de Origem" value="<?=$escala->origem?>" name="origem"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Aeroporto de Destino" value="<?=$escala->destino?>" name="destino"/>
+                        </div>
+                        <button type="submit" class="btnSubmit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

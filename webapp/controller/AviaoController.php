@@ -31,6 +31,26 @@ class AviaoController extends BaseController
         return View::make('aviao.gestaoAvioes',['avioes'=>$avioes]);
     }
 
+    public function create()
+    {
+        return View::make('aviao.new');
+    }
+
+    public function store()
+    {
+        //create new resource (activerecord/model) instance with data from POST
+        //your form name fields must match the ones of the table fields
+        $aviao = new Avioe(Post::getAll());
+
+        if($aviao->is_valid()){
+            $aviao->save();
+            Redirect::toRoute('aviao/ListarAvioes');
+        } else {
+            //redirect to form with data and errors
+            Redirect::flashToRoute('aviao/new', ['aviao' => $aviao]);
+        }
+    }
+
     public function edit($id)
     {
         $aviao=Avioe::find([$id]);

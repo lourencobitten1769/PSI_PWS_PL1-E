@@ -16,13 +16,15 @@ $aeroportos= Data::get('aeroportos');
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Gestão Aeroportos</title>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="<?= Asset::css('/index.css')?>">
 
 </head>
+<h1>Aeroportos</h1>
+<a href="<?= Url::toRoute('aeroporto/create')?>" class="btn btn-success">Inserir Aeroporto</a>
 
 <table id="#myTable">
     <thead>
@@ -45,6 +47,7 @@ $aeroportos= Data::get('aeroportos');
             <td><?=$aeroporto->nome_aeroporto?></td>
             <td><?=$aeroporto->localidade?></td>
             <td><a href="<?= Url::toRoute('aeroporto/edit',$aeroporto->id_aeroporto)?>">Edit</a> </td>
+            <td><a href="<?= Url::toRoute('aeroporto/destroy',$aeroporto->id_aeroporto)?>">Delete</a> </td>
         </tr>
         </tbody>
         <?php } ?>

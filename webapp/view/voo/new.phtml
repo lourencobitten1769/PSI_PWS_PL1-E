@@ -1,0 +1,43 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Voo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../public/css/edit.css">
+</head>
+<body>
+
+<div class="container register-form">
+    <div class="form">
+        <form method="post" action="<?=URL::toRoute('voo/store')?>">
+            <div class="titulo">
+                <h1>Novo Voo</h1>
+            </div>
+
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-4 left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Preço do Voo" value="" name="preco_voo"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Escala" value="" name="id_escala"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right">
+                        <div class="form-group">
+                            <br>
+                            <button type="submit" class="btnSubmit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
