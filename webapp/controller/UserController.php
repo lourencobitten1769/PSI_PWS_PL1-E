@@ -49,7 +49,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
 
         if($user->is_valid()) {
             $user->save();
-            return View::make('user.index');
+            return View::make('home.index');
         }
         else {
             //redirect to form with data and errors
@@ -150,7 +150,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
 
     public function destroysession(){
 
-        Session::destroy();
+        session_destroy();
         Redirect::toRoute('user/login');
     }
 }

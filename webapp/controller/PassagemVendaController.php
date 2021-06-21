@@ -22,24 +22,7 @@ class PassagemVendaController extends BaseController
         return View::make('passagemvenda.index',['aeroportos'=> $aeroportos]);
     }
 
-    public function ListarVoosConsoanteAOrigem(){
-        //echo $_SESSION['id'];
 
-        $origem=Post::get('partida');
-        echo $origem;
-        //$passagens= PassagemVenda::all(array('conditions' => 'id_utilizador = ?', $_SESSION['id']));
-
-        //$cond=array('conditions' => array("id_utilizador = ?", $_SESSION['id']));
-        //$passagens=PassagemVenda::all($cond);
-
-        /*$join = 'INNER JOIN escalas e ON(voos.id_escala = e.id_escala)';
-        $voos = Voo::all(array('joins' => $join));*/
-        $voos=Voo::find_by_sql('select * from `voos` INNER JOIN escalas a ON(voos.id_escala = a.id_escala) INNER JOIN aeroportos b ON(a.origem = b.id_aeroporto) WHERE a.origem=?',array($origem));
-        //var_dump($voos);
-
-        //var_dump($passagens);
-       return View::make('passagemvenda.comprarPassagem',['voos'=>$voos]);
-    }
 
 
     public function HistoricoPassagem(){

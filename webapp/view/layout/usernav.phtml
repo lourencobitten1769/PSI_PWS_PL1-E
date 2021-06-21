@@ -26,8 +26,8 @@ use ArmoredCore\WebObjects\URL;
     <!-- Custom styles for our site template -->
     <link rel="stylesheet" href="<?= Asset::css('/bootstrap-theme.css') ?>" media="screen">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= Asset::css('/navbar.css') ?>">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--<link rel="stylesheet" href="<?php //Asset::css('/navbar.css') ?>">
+    HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="<?= Asset::js('html5shiv.js') ?>"></script>
     <script src="<?= Asset::js('respond.min.js') ?>"></script>
@@ -36,10 +36,10 @@ use ArmoredCore\WebObjects\URL;
 
 <body class="home">
 <!-- Fixed navbar -->
-<nav class="navbar navbar-expand-lg ">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul style="margin-left: 40%" class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="<?= URL::toRoute('home/index') ?>">Inicio <span class="sr-only">(current)</span></a>
             </li>
@@ -47,15 +47,12 @@ use ArmoredCore\WebObjects\URL;
                 <a class="nav-link" href="<?= URL::toRoute('escala/ListarEscalas') ?>">Voos Disponiveis <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= URL::toRoute('escala/ListarEscalas') ?>">Procurar Voos</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="<?= URL::toRoute('passagemvenda/HistoricoPassagem') ?>">PassagensCompradas</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= URL::toRoute('user/destroysession')?>">Logout</a>
+            </li>
         </ul>
-
-
-
     </div>
 </nav>
 <!-- /.navbar -->

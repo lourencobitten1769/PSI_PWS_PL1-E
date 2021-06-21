@@ -9,12 +9,15 @@
 
 if($_SESSION['perfil']==2){
     Layout::includeLayout('adminnav');
+    \ArmoredCore\WebObjects\Redirect::toRoute('user/index');
 }
 else if($_SESSION['perfil']==3){
     Layout::includeLayout('gestornav');
+    \ArmoredCore\WebObjects\Redirect::toRoute('voo/ListarVoos');
 }
 else if($_SESSION['perfil']==4){
     Layout::includeLayout('operadorNav');
+    \ArmoredCore\WebObjects\Redirect::toRoute('voo/ListarVoos');
 }?>
 
 

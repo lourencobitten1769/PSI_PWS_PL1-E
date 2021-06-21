@@ -4,15 +4,8 @@ use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 use ArmoredCore\WebObjects\Data;
 
-if(!isset($_SESSION['perfil'])){
-    Layout::includeLayout('nologinnav');
-}
-else if($_SESSION['perfil']==1){
-    Layout::includeLayout('usernav');
-}
-else if($_SESSION['perfil']==3){
-    Layout::includeLayout('gestornav');
-}
+Layout::includeLayout('operadornav');
+
 
 
 $voos= Data::get('voos');

@@ -58,7 +58,7 @@ $aeroportos= Data::get('aeroportos');
         </a>
     </div>
 
-    <form method="post" action="<?=Url::toRoute('passagemvenda/ListarVoosConsoanteAOrigem')?>">
+    <form method="post" action="<?=Url::toRoute('voo/ListarVoosConsoanteAOrigem')?>">
         <!--<input type="radio" id="rbOrigemDestino" name="rbOrigemDestino" checked>
         Por origem e destino
 
@@ -87,5 +87,3 @@ $aeroportos= Data::get('aeroportos');
         <input type="submit" class="btn btn-success" value="Pesquisar" id="pesquisar">
     </form>
 
-
-<?php Layout::includeLayout('footer')?>
