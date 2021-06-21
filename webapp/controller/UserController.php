@@ -78,8 +78,6 @@ class UserController extends BaseController implements ResourceControllerInterfa
             $_SESSION['login'] = $user->username;
             $_SESSION['perfil'] = $userisset->id_perfil;
 
-            echo $_SESSION['perfil'];
-
             if($_SESSION['perfil']!=1){
                 return View::make('backoffice.home');
             }
@@ -147,6 +145,12 @@ class UserController extends BaseController implements ResourceControllerInterfa
     {
         $user = User::find([$id]);
         $user->delete();
-        Redirect::toRoute('user/index');
+        Redirect::toRoute('user/login');
+    }
+
+    public function destroysession(){
+
+        Session::destroy();
+        Redirect::toRoute('user/login');
     }
 }

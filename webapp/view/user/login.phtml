@@ -23,6 +23,8 @@ use ArmoredCore\WebObjects\URL;
     <link rel="stylesheet" href="<?= Asset::css('/bootstrap-theme.css')?>" media="screen" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../layout/forms.css">
+    <link rel="stylesheet" href="<?= Asset::css('/login.css')?>">
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -32,7 +34,7 @@ use ArmoredCore\WebObjects\URL;
 </head>
 
 <body>
-    <form style="background-color:grey; margin-left: 35%;margin-top: 17%; width: 30%; border: solid 1px" method="post" action="<?=Url::toRoute('user/processLogin')?>">
+    <form  method="post" id="form" action="<?=Url::toRoute('user/processLogin')?>">
         <div class="row">
             <div class="col-md-4">
                 <h3>Dados de Acesso</h3>
@@ -41,14 +43,9 @@ use ArmoredCore\WebObjects\URL;
             </div>
         </div>
             <div class="col-md-4">
-                <input style="margin-left: 50px" type="submit" class="btn btn-success" value="Login">
-            </div>
-            <div class="col-md-4">
-
+                <input  type="submit" class="btn btn-success" value="Login">
             </div>
         </div>
-            
-
-           
 
     </form>
+</body>

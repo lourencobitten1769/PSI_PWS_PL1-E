@@ -45,9 +45,6 @@ class VooController extends BaseController
 
 
     public function MostrarVoosAssociados(){
-        echo $_SESSION['id'];
-
-
 
         $join = 'LEFT JOIN escalas e ON(voo.id_escala = e.id_escala)';
         $voos = Voo::all(array('joins' => $join));

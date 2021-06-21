@@ -43,14 +43,12 @@ use ArmoredCore\WebObjects\URL;
                 <a class="nav-link" href="#">Ver informações de voos<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Gestão de Escalas</a>
+                <a class="nav-link" href="<?= URL::toRoute('escala/ListarEscalas') ?>">Efetuar Check-In</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= URL::toRoute('aviao/ListarAvioes') ?>">Gestão de Aviões</a>
+                <a class="nav-link" href="<?= URL::toRoute('aeroporto/index')?>">Logout</a>
             </li>
         </ul>
-
-
     </div>
 </nav>
 <!-- /.navbar -->

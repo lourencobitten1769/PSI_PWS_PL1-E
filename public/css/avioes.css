@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+}
+
+#\#myTable, th, td{
+    border: 1px solid black;
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 35%;
+}
+
+#inserir{
+    margin-left: 45%;
+    width: 200px;
+}
+
+#edit{
+    width:100px;
+}

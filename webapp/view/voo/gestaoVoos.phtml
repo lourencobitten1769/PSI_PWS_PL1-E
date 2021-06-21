@@ -10,6 +10,10 @@ if(!isset($_SESSION['perfil'])){
 else if($_SESSION['perfil']==1){
     Layout::includeLayout('usernav');
 }
+else if($_SESSION['perfil']==3){
+    Layout::includeLayout('gestornav');
+}
+
 
 $voos= Data::get('voos');
 $origens= Data::get('origem');

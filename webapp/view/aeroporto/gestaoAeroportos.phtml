@@ -10,6 +10,9 @@ if(!isset($_SESSION['perfil'])){
 else if($_SESSION['perfil']==1){
     Layout::includeLayout('usernav');
 }
+else if($_SESSION['perfil']==2){
+    Layout::includeLayout('adminnav');
+}
 
 $aeroportos= Data::get('aeroportos');
 ?>
@@ -20,11 +23,11 @@ $aeroportos= Data::get('aeroportos');
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="<?= Asset::css('/index.css')?>">
+    <link rel="stylesheet" href="<?= Asset::css('/aeroportos.css')?>">
 
 </head>
 <h1>Aeroportos</h1>
-<a href="<?= Url::toRoute('aeroporto/create')?>" class="btn btn-success">Inserir Aeroporto</a>
+<a id="inserir" href="<?= Url::toRoute('aeroporto/create')?>" class="btn btn-success">Inserir Aeroporto</a>
 
 <table id="#myTable">
     <thead>
@@ -38,6 +41,10 @@ $aeroportos= Data::get('aeroportos');
         <th>
             Localidade
         </th>
+        <th>
+            Operações
+
+        </th>
     </tr>
     </thead>
         <tbody>
@@ -46,8 +53,7 @@ $aeroportos= Data::get('aeroportos');
             <td><?=$aeroporto->id_aeroporto?></td>
             <td><?=$aeroporto->nome_aeroporto?></td>
             <td><?=$aeroporto->localidade?></td>
-            <td><a href="<?= Url::toRoute('aeroporto/edit',$aeroporto->id_aeroporto)?>">Edit</a> </td>
-            <td><a href="<?= Url::toRoute('aeroporto/destroy',$aeroporto->id_aeroporto)?>">Delete</a> </td>
+            <td><a id="edit" href="<?= Url::toRoute('aeroporto/edit',$aeroporto->id_aeroporto)?>" class="btn btn-warning">Edit</a> <a id="edit" href="<?= Url::toRoute('aeroporto/destroy',$aeroporto->id_aeroporto)?>" class="btn btn-danger">Delete</a>  </td>
         </tr>
         </tbody>
         <?php } ?>

@@ -38,17 +38,18 @@ use ArmoredCore\WebObjects\URL;
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Gestão de voos <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?= URL::toRoute('voo/ListarVoos')?>">Gestão de Voos <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Gestão de Escalas</a>
+                <a class="nav-link" href="<?= URL::toRoute('escala/ListarEscalas')?>">Gestão de Escalas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= URL::toRoute('aviao/ListarAvioes')?>">Gestão de Aviões</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= URL::toRoute('user/destroysession')?>">Logout</a>
+            </li>
         </ul>
-
-
     </div>
 </nav>
 <!-- /.navbar -->

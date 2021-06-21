@@ -1,6 +1,5 @@
 <?php
 
-
 use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\Facades\AssetBundler;
 use ArmoredCore\Facades\DebugRenderer;
@@ -41,7 +40,7 @@ use ArmoredCore\WebObjects\URL;
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Contas de Operadore de Checkin <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Contas de Operadores de Checkin <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Contas de Gestores de Voo</a>
@@ -49,9 +48,10 @@ use ArmoredCore\WebObjects\URL;
             <li class="nav-item">
                 <a class="nav-link" href="<?= URL::toRoute('aeroporto/index')?>">Gestão de Aeroportos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= URL::toRoute('user/destroysession')?>">Logout</a>
+            </li>
         </ul>
-
-
     </div>
 </nav>
 <!-- /.navbar -->

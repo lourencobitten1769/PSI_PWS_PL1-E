@@ -10,6 +10,10 @@ if(!isset($_SESSION['perfil'])){
 else if($_SESSION['perfil']==1){
     Layout::includeLayout('usernav');
 }
+else if($_SESSION['perfil']==3){
+    Layout::includeLayout('gestornav');
+}
+
 
 $avioes= Data::get('avioes');
 ?>
@@ -20,11 +24,11 @@ $avioes= Data::get('avioes');
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="<?= Asset::css('/index.css')?>">
+    <link rel="stylesheet" href="<?= Asset::css('/avioes.css')?>">
 
 </head>
 <h1>Aviões</h1>
-<a href="<?= Url::toRoute('aviao/create')?>" class="btn btn-success">Inserir Avião</a>
+<a id="inserir" href="<?= Url::toRoute('aviao/create')?>" class="btn btn-success">Inserir Avião</a>
 
 <br><br><table id="#myTable">
     <thead>
@@ -41,6 +45,9 @@ $avioes= Data::get('avioes');
         <th>
             Tipo de Avião
         </th>
+        <th>
+            Operações
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -50,8 +57,7 @@ $avioes= Data::get('avioes');
         <td><?=$aviao->referencia?></td>
         <td><?=$aviao->lotacao?></td>
         <td><?=$aviao->tipo_aviao?></td>
-        <td><a href="<?= Url::toRoute('aviao/edit',$aviao->id_aviao)?>">Edit</a> </td>
-        <td><a href="<?= Url::toRoute('aviao/delete',$aviao->id_aviao)?>">Delete</a> </td>
+        <td><a id="edit" href="<?= Url::toRoute('aviao/edit',$aviao->id_aviao)?>" class="btn btn-warning">Edit</a> <a id="edit" href="<?= Url::toRoute('aviao/delete',$aviao->id_aviao)?>" class="btn btn-danger">Delete</a>  </td>
 
     </tr>
     </tbody>
