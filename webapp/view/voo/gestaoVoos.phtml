@@ -4,8 +4,15 @@ use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 use ArmoredCore\WebObjects\Data;
 
-Layout::includeLayout('operadornav');
-
+if(!isset($_SESSION['perfil'])){
+    Layout::includeLayout('nologinnav');
+}
+else if($_SESSION['perfil']==1){
+    Layout::includeLayout('usernav');
+}
+else if($_SESSION['perfil']==4){
+    Layout::includeLayout('operadornav');
+}
 
 
 $voos= Data::get('voos');
@@ -25,9 +32,18 @@ $destinos= Data::get('destino');
 
 <?php
 
-echo '<h1>Voos Disponiveis</h1>';
+echo '<h1 style="margin-left: 40%">Voos Disponiveis</h1>';
+
+        if($_SESSION['perfil']==1) {
+
+        }
+        else{
+            ?>
+            <a href="<?= Url::toRoute('voo/create')?>" class="btn btn-success">Inserir Voo</a>
+<?php
+        }
 ?>
-<a href="<?= Url::toRoute('voo/create')?>" class="btn btn-success">Inserir Voo</a>
+
 <form>
     <?php
     foreach ($voos as $voo){
@@ -49,9 +65,27 @@ echo '<h1>Voos Disponiveis</h1>';
 ?>
                 <div>
 
-                <br><a href="<?= Url::toRoute('voo/edit',$voo->id_voo)?>">Editar</a>
+                    <?php
 
-                <br><a href="<?= Url::toRoute('voo/destroy',$voo->id_voo)?>">Eliminar</a>
+                    if($_SESSION['perfil']==1)
+                    {
+?>
+                        <a href="<?= Url::toRoute('passagemvenda/pdfs')?>"><button class="btn btn-success">Comprar</button></a>
+
+<?php
+                    }
+                    else
+                    {
+                        ?>
+                        <br><a href="<?= Url::toRoute('voo/edit',$voo->id_voo)?>">Editar</a>
+
+                        <br><a href="<?= Url::toRoute('voo/destroy',$voo->id_voo)?>">Eliminar</a>
+                        <?php
+                    }
+
+
+                    ?>
+
 
                 </div>
 <?php
@@ -62,4 +96,3 @@ echo '<h1>Voos Disponiveis</h1>';
     ?>
 </form>
 </body>
-

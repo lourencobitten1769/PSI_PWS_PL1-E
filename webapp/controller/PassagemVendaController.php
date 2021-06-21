@@ -67,10 +67,9 @@ class PassagemVendaController extends BaseController
         //your form name fields must match the ones of the table fields
         $passagem = new PassagemVenda(Post::getAll());
         $passagem->data_compra=date('Y-m-d H:i:s');
-        var_dump($passagem);
         if($passagem->is_valid()) {
             $passagem->save();
-            return View::make('passagemvenda.comprarPassagem');
+            Redirect::ToRoute('passagemvenda/HistoricoPassagem');
         }
         else {
             //redirect to form with data and errors
